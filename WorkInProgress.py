@@ -8,13 +8,10 @@ L = 500
 Hgraph = 50
 
 def solarSystem(evt):
-<<<<<<< HEAD
     a = Vx.GetValue()
     b = Vy.GetValue()
     c = Vz.GetValue()
     Earth.v = vector(float(a),float(b),float(c))
-=======
->>>>>>> f384c059874279164edf293d571a49d092646d54
     for ii in range(1000):
         rate(100)
 
@@ -23,7 +20,6 @@ def solarSystem(evt):
         F12 = (10000*rhat)/rmag**2
         Earth.v += F12
         Earth.pos += Earth.v
-<<<<<<< HEAD
     print(Earth.v)
 
 def Box(evt):
@@ -31,12 +27,6 @@ def Box(evt):
     b = Vy.GetValue()
     c = Vz.GetValue()
     print("("+ a + ","+ b + "," + c + ")")
-=======
-
-def Box(evt):
-    import visual as vs
-    cube = vs.box(color=color.red)
->>>>>>> f384c059874279164edf293d571a49d092646d54
 
 def choose(evt):
     selected = evt.GetSelection()
@@ -62,7 +52,6 @@ Earth = sphere(pos=vector(200,0,0), radius=10, material=materials.earth, make_tr
 
 p = w.panel
 font = wx.Font(20,  wx.ROMAN, wx.NORMAL, wx.BOLD)
-<<<<<<< HEAD
 l1 = wx.StaticText(p, pos=(105,50), size=(110,50), label='Velocity',
               style=wx.ALIGN_LEFT | wx.ST_NO_AUTORESIZE)
 l1.SetFont(font)
@@ -92,34 +81,12 @@ mainscreen = wx.Button(p, label='Main Screen', pos=(250,430), size=(110,50))
 
 pause = wx.Button(p, label='Pause', pos=(580,430), size=(110,50))
 pause.Bind(wx.EVT_BUTTON, Box)
-=======
-l1 = wx.StaticText(p, pos=(85,50), size=(110,50), label='Velocity',
-              style=wx.ALIGN_LEFT | wx.ST_NO_AUTORESIZE)
-l1.SetFont(font)
-
-tc = wx.TextCtrl(p, pos=(200,300), value='You can type here:\n',
-            size=(700,700), style=wx.TE_MULTILINE)
-tc.SetInsertionPoint(len(tc.GetValue())+1) # position cursor at end of text
-tc.SetFocus() # so that keypresses go to the TextCtrl without clicking it
-# Note that disp.canvas.SetFocus() will put disp in keyboard focus.
-
-start = wx.Button(p, label='Start', pos=(250,430), size=(110,50))
-start.Bind(wx.EVT_BUTTON, solarSystem)
-
-pause = wx.Button(p, label='Pause', pos=(580,430), size=(110,50))
-# pause.Bind(wx.EVT_BUTTON, solarSystem)
->>>>>>> f384c059874279164edf293d571a49d092646d54
 
 reset = wx.Button(p, label='Reset', pos=(900,430), size=(110,50))
 # reset.Bind(wx.EVT_BUTTON, solarSystem)
 
-<<<<<<< HEAD
 start = wx.Button(p, label='Start', pos=(100,300), size=(110,50))
 start.Bind(wx.EVT_BUTTON, solarSystem)
-=======
-mainscreen = wx.Button(p, label='Main Screen', pos=(100,300), size=(110,50))
-# mainscreen.Bind(wx.EVT_BUTTON, solarSystem)
->>>>>>> f384c059874279164edf293d571a49d092646d54
 
 #
 # items = []
