@@ -50,6 +50,12 @@ l1 = wx.StaticText(p, pos=(85,50), size=(110,50), label='Velocity',
               style=wx.ALIGN_LEFT | wx.ST_NO_AUTORESIZE)
 l1.SetFont(font)
 
+tc = wx.TextCtrl(p, pos=(200,300), value='You can type here:\n',
+            size=(700,700), style=wx.TE_MULTILINE)
+tc.SetInsertionPoint(len(tc.GetValue())+1) # position cursor at end of text
+tc.SetFocus() # so that keypresses go to the TextCtrl without clicking it
+# Note that disp.canvas.SetFocus() will put disp in keyboard focus.
+
 start = wx.Button(p, label='Start', pos=(250,430), size=(110,50))
 start.Bind(wx.EVT_BUTTON, solarSystem)
 
