@@ -17,6 +17,13 @@ def pausefunc(evt):
     else:
         pause.SetLabel("Run")
 
+def resetfunc(evt):
+    global Earth, Sun
+
+    w.delete_all()
+    Sun = sphere(pos=vector(0,0,0), radius=100, color=color.yellow)
+    Earth = sphere(pos=vector(200,0,0), radius=10, material=materials.earth, make_trail=True)
+
 def solarSystem(evt):
     a = Vx.GetValue()
     b = Vy.GetValue()
@@ -87,7 +94,7 @@ pause = wx.Button(p, label='Pause', pos=(900,900), size=(110,50))
 pause.Bind(wx.EVT_BUTTON, pausefunc)
 
 reset = wx.Button(p, label='Reset', pos=(1300,900), size=(110,50))
-# reset.Bind(wx.EVT_BUTTON, pausefunc)
+reset.Bind(wx.EVT_BUTTON, resetfunc)
 
 start = wx.Button(p, label='Input', pos=(100,300), size=(110,50))
 start.Bind(wx.EVT_BUTTON, solarSystem)
