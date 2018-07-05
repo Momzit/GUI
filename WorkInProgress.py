@@ -18,11 +18,24 @@ def pausefunc(evt):
         pause.SetLabel("Run")
 
 def resetfunc(evt):
-    global Earth, Sun
+    global Earth, Sun, disp, Vx, Vy, Vz, running
 
-    w.delete_all()
+    disp.delete()
+
+    a = 0
+    b = -8
+    c = 0
+    d = 1
+    disp = display(window=w, x=250, y=d, width=1500-2*d, height=850-2*d, forward=-vector(0,1,2))
+    gdisplay(window=w, y=50, width=2*(L+window.dwidth), height=Hgraph)
+
     Sun = sphere(pos=vector(0,0,0), radius=100, color=color.yellow)
-    Earth = sphere(pos=vector(200,0,0), radius=10, material=materials.earth, make_trail=True)
+    Earth = sphere(pos=vector(200,0,0), radius=10, material=materials.earth, make_trail=True, trail_type='points')
+    Vx.SetValue(str(a))
+    Vy.SetValue(str(b))
+    Vz.SetValue(str(c))
+    Earth.v = vector(float(a),float(b),float(c))
+    Output.SetValue("The Earth now has this Velocity \n" + str(Earth.v))
 
 def solarSystem(evt):
     a = Vx.GetValue()
@@ -39,6 +52,12 @@ def solarSystem(evt):
             Earth.v += F12
             Earth.pos += Earth.v
             Output.SetValue("The Earth now has this Velocity \n" + str(Earth.v))
+            if rmag <= Sun.radius:
+                error = wx.MessageBox('The speed caused the planet to crash on the Sun', 'Oops!', wx.OK | wx.ICON_INFORMATION)
+                break
+    resetfunc(evt)
+
+# def mainscreenfunc(evt):
 
 #==========================================================Window==========================================================
 #This creates a window, takes in different attributes
@@ -53,7 +72,7 @@ gdisplay(window=w, y=50, width=2*(L+window.dwidth), height=Hgraph)
 # #==========================================================Sun and Earth==========================================================
 # #The Sun and Earth model
 Sun = sphere(pos=vector(0,0,0), radius=100, color=color.yellow)
-Earth = sphere(pos=vector(200,0,0), radius=10, material=materials.earth, make_trail=True)
+Earth = sphere(pos=vector(200,0,0), radius=10, material=materials.earth, make_trail=True, trail_type='points')
 
 #==========================================================Buttons and Widgets==========================================================
 p = w.panel
